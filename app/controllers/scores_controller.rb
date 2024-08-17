@@ -1,9 +1,10 @@
 class ScoresController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_score, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_user_owns_score, only: [:edit, :update, :destroy]
 
   def index
-    @scores = current_user.scores
+    @scores = Score.all
   end
 
   def show
@@ -46,7 +47,13 @@ class ScoresController < ApplicationController
   private
 
   def set_score
-    @score = current_user.scores.find(params[:id])
+    @score = Score.find(params[:id])
+  end
+
+  def ensure_user_owns_score
+    return if current_user == @score.user
+
+    redirect_to root_path
   end
 
   def score_params
