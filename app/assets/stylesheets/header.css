@@ -1,0 +1,157 @@
+/* Header Styles */
+
+.site-header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.site-title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3; /* Increased z-index */
+}
+
+.title-link {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2c3e50;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: inline-block; /* Ensure the link is clickable */
+  padding: 5px 10px; /* Add some padding for better clickability */
+  position: relative; /* Ensure z-index works */
+  z-index: 4; /* Higher than .site-title */
+}
+
+.title-link:hover {
+  color: #3498db;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  position: relative;
+  z-index: 2;
+}
+
+.user-name {
+  margin-right: 15px;
+  font-weight: 500;
+}
+
+.btn {
+  padding: 8px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  position: relative;
+  z-index: 3;
+}
+
+.btn-signup {
+  background-color: #2ecc71;
+  color: white;
+  margin-right: 10px;
+}
+
+.btn-signup:hover {
+  background-color: #27ae60;
+}
+
+.btn-login {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-login:hover {
+  background-color: #2980b9;
+}
+
+.btn-logout {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-logout:hover {
+  background-color: #c0392b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+  }
+
+  .site-title {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .user-actions {
+    width: 100%;
+    justify-content: center;
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .user-name {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .btn {
+    margin-bottom: 10px;
+  }
+}
+
+/* Accessibility Improvements */
+.btn:focus,
+.title-link:focus {
+  outline: 2px solid #3498db;
+  outline-offset: 2px;
+}
+
+/* Additional Styles for Better User Experience */
+.user-actions > * {
+  margin-left: 10px;
+}
+
+.user-actions > *:first-child {
+  margin-left: 0;
+}
+
+/* Ensure buttons are easily clickable on touch devices */
+@media (hover: none) {
+  .btn,
+  .title-link {
+    padding: 10px 20px;
+  }
+}

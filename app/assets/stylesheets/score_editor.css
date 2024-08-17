@@ -1,0 +1,223 @@
+/* score_editor.css */
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 20px;
+}
+
+.song-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 435px;
+}
+
+.song-info input {
+  width: 48%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.row-container {
+  margin-bottom: 20px;
+  background-color: white;
+  width: 70%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.row-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.drag-handle {
+  cursor: move;
+  padding: 5px 10px;
+  margin-right: 10px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.section-input {
+  flex-grow: 1;
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-width: 0; 
+}
+
+.table-and-buttons-container {
+  display: flex;
+  align-items: flex-start;
+}
+
+.score-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-right: 10px;
+}
+
+.score-table td {
+  padding: 0;
+  position: relative;
+}
+
+.code-row td {
+  height: 20px;
+  border: 1px solid #ccc;
+  width: 100px;
+  border-top: 2px solid #a3a3a3;
+  border-bottom: 1px solid #a3a3a3;
+}
+
+.number-row td {
+  height: 150px;
+  border: 1px solid #ccc;
+  width: 25px;
+  border-top: 1px solid #a3a3a3;
+  border-bottom: 2px solid #a3a3a3;
+}
+
+.code-row td:nth-child(even) {
+  border-right: 1px solid #a3a3a3;
+}
+
+.code-row td:nth-child(odd) {
+  border-left: 1px solid #a3a3a3;
+}
+
+.code-row td:nth-child(16) {
+  border-right: 2px solid #a3a3a3;
+}
+
+.code-row td:nth-child(1) {
+  border-left: 2px solid #a3a3a3;
+}
+
+.number-row td:nth-child(even) {
+  border-left: 1px dotted #ccc;
+}
+
+.number-row td:nth-child(odd) {
+  border-right: 1px dotted #ccc;
+}
+
+.number-row td:nth-child(1){
+  border-left: 2px solid #a3a3a3;
+}
+
+.number-row td:nth-child(5), .number-row td:nth-child(9), .number-row td:nth-child(13), .number-row td:nth-child(17), .number-row td:nth-child(21), .number-row td:nth-child(25), .number-row td:nth-child(29) {
+  border-left: 1px solid #a3a3a3;
+}
+
+.number-row td:nth-child(32){
+  border-right: 2px solid #a3a3a3;
+}
+
+.number-row td:nth-child(4), .number-row td:nth-child(8), .number-row td:nth-child(12), .number-row td:nth-child(16), .number-row td:nth-child(20), .number-row td:nth-child(24), .number-row td:nth-child(28){
+  border-right: 1px solid #a3a3a3;
+}
+
+.codeInput, .numberInput {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.codeInput {
+  text-align: center;
+}
+
+.number-container {
+  position: relative;
+  height: 100%;
+}
+
+.numberInput {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.deleteButton, .duplicateButton {
+  padding: 5px 10px;
+  font-size: 12px;
+  margin: 2px 0;
+  cursor: pointer;
+  border: none;
+  color: white;
+}
+
+.deleteButton {
+  background-color: #ff6b6b;
+}
+
+.duplicateButton {
+  background-color: #4CAF50;
+}
+
+#addButton, #saveButton {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.row-container.dragging {
+  opacity: 0.5;
+  background-color: #f8f8f8;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .row-container {
+    width: 90%;
+  }
+
+  .song-info {
+    flex-direction: column;
+  }
+
+  .song-info input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .table-and-buttons-container {
+    flex-direction: column;
+  }
+
+  .buttonContainer {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .deleteButton, .duplicateButton {
+    width: 48%;
+  }
+}

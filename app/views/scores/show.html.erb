@@ -1,0 +1,41 @@
+<%# show.html.erb %>
+
+<div class="scores-container">
+  <h1><%= @score.title %></h1>
+  <p><strong>アーティスト:</strong> <%= @score.artist %></p>
+  <div class="score-content">
+    <% if @score.content.present? %>
+      <% JSON.parse(@score.content).each_with_index do |section, index| %>
+        <div class="row-container">
+          <div class="row-header">
+            <input type="text" value="<%= section['section'] %>" class="section-input" readonly>
+          </div>
+          <div class="table-wrapper">
+            <table class="score-table">
+              <tr class="code-row">
+                <% section['codes'].each do |code| %>
+                  <td colspan="2"><input type="text" value="<%= code %>" class="codeInput" readonly></td>
+                <% end %>
+              </tr>
+              <tr class="number-row">
+                <% section['numbers'].each do |number| %>
+                  <td>
+                    <div class="number-container">
+                      <input type="text" value="<%= number['value'] %>" class="numberInput" readonly style="top: <%= number['position'] %>;">
+                    </div>
+                  </td>
+                <% end %>
+              </tr>
+            </table>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>楽譜のコンテンツがありません。</p>
+    <% end %>
+  </div>
+  <div class="actions">
+    <%= link_to '編集', edit_score_path(@score), class: 'btn btn-edit' %>
+    <%= link_to '戻る', scores_path, class: 'btn btn-back' %>
+  </div>
+</div>

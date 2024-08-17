@@ -1,0 +1,37 @@
+<%# index.html.erb %>
+
+<div class="scores-container">
+  <h1 class="scores-title">楽譜一覧</h1>
+
+  <%= form_tag scores_path, method: :get, class: "scores-search-form" do %>
+    <%= text_field_tag :search, params[:search], placeholder: "楽譜を検索...", class: "scores-search-input" %>
+    <%= submit_tag "検索", class: "scores-search-submit" %>
+  <% end %>
+
+  <%= link_to '新規楽譜作成', new_score_path, class: "scores-new-link" %>
+
+  <table class="scores-table">
+    <thead>
+      <tr>
+        <th>タイトル</th>
+        <th>アーティスト</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @scores.each do |score| %>
+        <tr>
+          <td data-label="タイトル"><%= score.title %></td>
+          <td data-label="アーティスト"><%= score.artist %></td>
+          <td data-label="操作">
+            <%= link_to '表示', score, class: "scores-action-link scores-view-link" %>
+            <%= link_to '編集', edit_score_path(score), class: "scores-action-link scores-edit-link" %>
+            <%= link_to '削除', score, data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "scores-action-link scores-delete-link" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+</div>

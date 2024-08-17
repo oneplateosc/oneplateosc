@@ -1,0 +1,77 @@
+<%# edit.html.erb %>
+
+<div class="form-container" id="formContainer">
+  <h1>スコア編集フォーム</h1>
+
+  <%= form_with(model: @score, local: false, id: 'score-form') do |form| %>
+    <div class="song-info">
+      <%= form.text_field :title, placeholder: "曲名", id: "songTitle" %>
+      <%= form.text_field :artist, placeholder: "アーティスト名", id: "artistName" %>
+    </div>
+
+    <div id="rows-container">
+      <% if @score.content.present? %>
+        <% JSON.parse(@score.content).each do |section| %>
+          <div class="row-container">
+            <div class="row-header">
+              <input type="text" value="<%= section['section'] %>" class="section-input">
+              <div class="drag-handle">&#9776;</div>
+            </div>
+            <div class="table-and-buttons-container">
+              <table class="score-table">
+                <tr class="code-row">
+                  <% section['codes'].each do |code| %>
+                    <td colspan="2"><input type="text" value="<%= code %>" class="codeInput"></td>
+                  <% end %>
+                </tr>
+                <tr class="number-row">
+                  <% section['numbers'].each do |number| %>
+                    <td>
+                      <div class="number-container">
+                        <input type="text" value="<%= number['value'] %>" class="numberInput" style="top: <%= number['position'] %>;">
+                      </div>
+                    </td>
+                  <% end %>
+                </tr>
+              </table>
+              <div class="buttonContainer">
+                <button class="duplicateButton" type="button">複製</button>
+                <button class="deleteButton" type="button">削除</button>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  
+    <button id="addButton" type="button">追加</button>
+    <%= form.submit '更新', id: 'saveButton' %>
+  <% end %>
+</div>
+
+<template id="row-template">
+  <div class="row-container">
+    <div class="row-header">
+      <input type="text" placeholder="展開名を入力" class="section-input">
+      <div class="drag-handle">&#9776;</div>
+    </div>
+    <div class="table-and-buttons-container">
+      <table class="score-table">
+        <tr class="code-row">
+          <% 16.times do %>
+            <td colspan="2"><input type="text" class="codeInput" placeholder=""></td>
+          <% end %>
+        </tr>
+        <tr class="number-row">
+          <% 32.times do %>
+            <td><div class="number-container"><input type="text" class="numberInput" placeholder=""></div></td>
+          <% end %>
+        </tr>
+      </table>
+      <div class="buttonContainer">
+        <button class="duplicateButton" type="button">複製</button>
+        <button class="deleteButton" type="button">削除</button>
+      </div>
+    </div>
+  </div>
+</template>
